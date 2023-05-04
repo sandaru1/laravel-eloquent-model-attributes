@@ -8,7 +8,7 @@ Use the Command Palette to excute "Insert Eloquent Model Attributes" in your mod
 
 ![Screenshot](https://raw.githubusercontent.com/sandaru1/laravel-eloquent-model-attributes/main/images/attributes.gif)
 
-This extension can detect and insert following attribute changes.
+This extension can detect and insert following attribute changes. You can change these in the extension settings.
 
 #### Primary Key
 
@@ -39,7 +39,7 @@ This extension can detect and insert following attribute changes.
 
 ## Extension Settings
 
-This extension doesn't provide any configuration options at the moment.
+![Screenshot](https://raw.githubusercontent.com/sandaru1/laravel-eloquent-model-attributes/main/images/settings.png)
 
 ## Known Issues
 
@@ -48,7 +48,11 @@ This extension doesn't provide any configuration options at the moment.
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.2
+
+Configuration options.
+
+### 0.0.1
 
 Initial release of Laravel Eloquent Model Attributes.
 
