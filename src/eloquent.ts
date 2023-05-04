@@ -1,14 +1,9 @@
-import {TableColumn} from './types';
+import * as vscode from 'vscode';
+import { TableColumn } from './types';
 
-const FILLABLE_IGNORE:Array<RegExp> = [/password/,/token/,/_at$/,/admin/,/^is_/];
-const CAST_IGNORE_NAMES:Array<String> = ["created_at","updated_at","deleted_at"];
-const CAST_TYPES:Map<String,String> = new Map([
-    ["timestamp","datetime"],
-    ["tinyint(1)","boolean"],
-    ["json","array"]
-]);
+export default function generateCode(schema: Array<TableColumn>): string {
+    const configuration = vscode.workspace.getConfiguration("laravel-eloquent-model-attributes");
 
-export default function generateCode(schema:Array<TableColumn>):string {
     let traits:Array<String> = [];
     let protectedVariables:Array<String> = [];
     let fillable:Array<String> = [];
@@ -41,14 +36,17 @@ export default function generateCode(schema:Array<TableColumn>):string {
         traits.push("\\Illuminate\\Database\\Eloquent\\SoftDeletes");
     }
 
-    schema.forEach(function(column) {
-        if (column.primaryKey || column.autoIncrement || column.foreignKey) {
+    schema.forEach(function (column) {
+        if ((configuration.fillable.primaryKey && column.primaryKey)
+            || (configuration.fillable.autoIncrement && column.autoIncrement)
+            || (configuration.fillable.foreignKey && column.foreignKey) ){
             return;
         }
         // Look for the ignore regex in names
         let ignore:boolean = false;
-        for(let i=0;i<FILLABLE_IGNORE.length;i++) {
-            if (FILLABLE_IGNORE[i].test(column.name)) {
+        for (let i = 0; i < configuration.fillable.columnsToIgnore.length; i++) {
+            const regex = new RegExp(configuration.fillable.columnsToIgnore[i]);
+            if (regex.test(column.name)) {
                 ignore = true;
                 break;
             }
@@ -58,10 +56,19 @@ export default function generateCode(schema:Array<TableColumn>):string {
         }
     });
 
-    schema.forEach(function(column) {
-        if (CAST_TYPES.has(column.type)) {
-            if (CAST_IGNORE_NAMES.find((name) => column.name===name) === undefined) {
-                casts.set(column.name,CAST_TYPES.get(column.type) ?? "");
+    schema.forEach(function (column) {
+        if (configuration.casts.types.hasOwnProperty(column.type)) {
+            // Look for the ignore regex in names
+            let ignore: boolean = false;
+            for (let i = 0; i < configuration.casts.columnsToIgnore.length; i++) {
+                const regex = new RegExp(configuration.casts.columnsToIgnore[i]);
+                if (regex.test(column.name)) {
+                    ignore = true;
+                    break;
+                }
+            }
+            if (!ignore) {
+                casts.set(column.name, configuration.casts.types[column.type] ?? "");
             }
         }
     });
