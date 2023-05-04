@@ -6,6 +6,7 @@
   "engines": {
     "vscode": "^1.77.0"
   },
+  "publisher":"sandaruwangunathilake",
   "license": "MIT",
   "categories": [
     "Programming Languages",
