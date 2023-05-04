@@ -6,7 +6,7 @@ This extension can query your database tables and insert the relevant eloquent m
 
 Use the Command Palette to excute "Insert Eloquent Model Attributes" in your model file. The extension will automatically get your database information and asks you to input the table name.
 
-![Screenshot](./images/attributes.gif)
+![Screenshot](https://raw.githubusercontent.com/sandaru1/laravel-eloquent-model-attributes/main/images/attributes.gif)
 
 This extension can detect and insert following attribute changes.
 
