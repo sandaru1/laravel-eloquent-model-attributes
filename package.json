@@ -33,6 +33,61 @@
         "command": "laravel-eloquent-model-attributes.insert-attributes",
         "title": "Insert Eloquent Model Attributes"
       }
+    ],
+    "configuration": [
+        {
+          "title": "Fillable",
+          "properties": {
+            "laravel-eloquent-model-attributes.fillable.primaryKey": {
+              "type": "boolean",
+              "default": true,
+              "description": "Ignore primary key column in the fillable array."
+            },
+            "laravel-eloquent-model-attributes.fillable.foreignKey": {
+              "type": "boolean",
+              "default": true,
+              "description": "Ignore foreign key columns in the fillable array."
+            },
+            "laravel-eloquent-model-attributes.fillable.autoIncrement": {
+              "type": "boolean",
+              "default": true,
+              "description": "Ignore auto increment columns in the fillable array."
+            },
+            "laravel-eloquent-model-attributes.fillable.columnsToIgnore": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": ["password","token","admin","_at$","^is_"],
+              "description": "Ignore columns matching these regular expression patterns."
+            }
+          }
+        },
+        {
+          "title": "Casts",
+          "properties": {
+            "laravel-eloquent-model-attributes.casts.columnsToIgnore": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": ["^created_at$","^updated_at$","^deleted_at$"],
+              "description": "Ignore columns matching these regular expression patterns."
+            },
+            "laravel-eloquent-model-attributes.casts.types": {
+              "type": "object",
+              "patternProperties": {
+                ".*" : {"type":"string"}
+              },
+              "default": {
+                "timestamp":"datetime",
+                "tinyint(1)":"boolean",
+                "json":"array"
+              },
+              "description": "Ignore columns matching these regular expression patterns."
+            }
+          }
+        }      
     ]
   },
   "scripts": {
