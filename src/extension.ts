@@ -20,9 +20,7 @@ export function activate(context: vscode.ExtensionContext) {
 					if (tableName!==undefined) {
 						getTableSchema(dbInfo,tableName).then((schema) => {
 							const newCode = generateCode(schema);
-							editor.edit((edit) => {
-								edit.replace(editor.selection, newCode);
-							});
+							editor.insertSnippet(new vscode.SnippetString(newCode));
 						}).catch((error) => {
 							vscode.window.showErrorMessage(error.message);
 						});		
