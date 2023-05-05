@@ -106,7 +106,7 @@
               "tinyint(1)": "boolean",
               "json": "array"
             },
-            "description": "Ignore columns matching these regular expression patterns."
+            "description": "Define what type of columns should cast to Laravel types. MySqlType : LaravelCastType"
           }
         }
       }
