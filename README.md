@@ -43,10 +43,14 @@ This extension can detect and insert following attribute changes. You can change
 
 ## Known Issues
 
-1. When the attributes are inserted into the code editor, indentation fails.
-2. Only supports MySQL at the moment.
+1. Only supports MySQL at the moment.
 
 ## Release Notes
+
+### 0.0.4
+
+- Extracts the model name and converts it into the table name according to Laravel standards. This table name is used as a default in the user input.
+- Maintains proper code indentation while adding new code.
 
 ### 0.0.2
 
