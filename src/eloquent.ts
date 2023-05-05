@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { TableColumn } from './types';
+import { snakeCase } from "snake-case";
 
 export default function generateCode(schema: Array<TableColumn>): string {
     const configuration = vscode.workspace.getConfiguration("laravel-eloquent-model-attributes");
@@ -18,15 +19,15 @@ export default function generateCode(schema: Array<TableColumn>): string {
         }
         
         if (primaryKeyCol.name!=="id") {
-            protectedVariables.push(`protected $primaryKey = '${primaryKeyCol.name}';`);
+            protectedVariables.push(`protected \\$primaryKey = '${primaryKeyCol.name}';`);
         }
 
         if (primaryKeyCol.autoIncrement===false) {
-            protectedVariables.push('public $incrementing = false;');
+            protectedVariables.push('public \\$incrementing = false;');
         }
 
         if (!primaryKeyCol.type.includes("int")) {
-            protectedVariables.push("protected $keyType = 'string';");
+            protectedVariables.push("protected \\$keyType = 'string';");
         }
     }
 
@@ -82,13 +83,13 @@ export default function generateCode(schema: Array<TableColumn>): string {
         code.push(value,"");
     });
     if (fillable.length>0) {
-        code.push("protected $fillable = [");
+        code.push("protected \\$fillable = [");
         const fillableVariables = fillable.map((value) =>  "\t'" + value + "'" ).join(",\n");
         code.push(fillableVariables);
         code.push("];","");
     }
     if (casts.size>0) {
-        code.push("protected $casts = [");
+        code.push("protected \\$casts = [");
         casts.forEach((value,key) => {
             code.push("\t'"+ key + "' => '"+ value +"',");
         });
@@ -96,4 +97,14 @@ export default function generateCode(schema: Array<TableColumn>): string {
     }
     
     return code.join("\n");
+}
+
+export function getTableNameFromModel(model: string): string {
+    const pluralize = require('pluralize');
+    
+    // https://github.com/illuminate/support/blob/master/Str.php#L755
+    const parts = model.split(new RegExp('(.)(?=[A-Z])', 'u'));
+    const lastWord = pluralize(parts.pop());
+
+    return snakeCase(parts.join('') + lastWord);
 }

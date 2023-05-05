@@ -6,7 +6,7 @@
   "engines": {
     "vscode": "^1.77.0"
   },
-  "publisher":"sandaruwangunathilake",
+  "publisher": "sandaruwangunathilake",
   "license": "MIT",
   "categories": [
     "Programming Languages",
@@ -14,9 +14,13 @@
     "Other"
   ],
   "keywords": [
-    "php","laravel","eloquent","snippet","attributes"
+    "php",
+    "laravel",
+    "eloquent",
+    "snippet",
+    "attributes"
   ],
-  "icon":"images/icon.jpg",
+  "icon": "images/icon.jpg",
   "repository": {
     "type": "git",
     "url": "https://github.com/sandaru1/laravel-eloquent-model-attributes.git"
@@ -24,7 +28,7 @@
   "bugs": {
     "url": "https://github.com/sandaru1/laravel-eloquent-model-attributes/issues",
     "email": "sandaruwan@gunathilake.com"
-  },  
+  },
   "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
@@ -35,65 +39,77 @@
       }
     ],
     "configuration": [
-        {
-          "title": "Fillable",
-          "properties": {
-            "laravel-eloquent-model-attributes.fillable.primaryKey": {
-              "order":0,
-              "type": "boolean",
-              "default": true,
-              "description": "Ignore primary key column in the fillable array."
+      {
+        "title": "Fillable",
+        "properties": {
+          "laravel-eloquent-model-attributes.fillable.primaryKey": {
+            "order": 0,
+            "type": "boolean",
+            "default": true,
+            "description": "Ignore primary key column in the fillable array."
+          },
+          "laravel-eloquent-model-attributes.fillable.foreignKey": {
+            "order": 1,
+            "type": "boolean",
+            "default": true,
+            "description": "Ignore foreign key columns in the fillable array."
+          },
+          "laravel-eloquent-model-attributes.fillable.autoIncrement": {
+            "order": 2,
+            "type": "boolean",
+            "default": true,
+            "description": "Ignore auto increment columns in the fillable array."
+          },
+          "laravel-eloquent-model-attributes.fillable.columnsToIgnore": {
+            "order": 3,
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            "laravel-eloquent-model-attributes.fillable.foreignKey": {
-              "order": 1,
-              "type": "boolean",
-              "default": true,
-              "description": "Ignore foreign key columns in the fillable array."
-            },
-            "laravel-eloquent-model-attributes.fillable.autoIncrement": {
-              "order": 2,
-              "type": "boolean",
-              "default": true,
-              "description": "Ignore auto increment columns in the fillable array."
-            },
-            "laravel-eloquent-model-attributes.fillable.columnsToIgnore": {
-              "order": 3,
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "default": ["password","token","admin","_at$","^is_"],
-              "description": "Ignore columns matching these regular expression patterns."
-            }
+            "default": [
+              "password",
+              "token",
+              "admin",
+              "_at$",
+              "^is_"
+            ],
+            "description": "Ignore columns matching these regular expression patterns."
           }
-        },
-        {
-          "title": "Casts",
-          "properties": {
-            "laravel-eloquent-model-attributes.casts.columnsToIgnore": {
-              "order": 0,
-              "type": "array",
-              "items": {
-                "type": "string"
-              },
-              "default": ["^created_at$","^updated_at$","^deleted_at$"],
-              "description": "Ignore columns matching these regular expression patterns."
+        }
+      },
+      {
+        "title": "Casts",
+        "properties": {
+          "laravel-eloquent-model-attributes.casts.columnsToIgnore": {
+            "order": 0,
+            "type": "array",
+            "items": {
+              "type": "string"
             },
-            "laravel-eloquent-model-attributes.casts.types": {
-              "order": 1,
-              "type": "object",
-              "patternProperties": {
-                ".*" : {"type":"string"}
-              },
-              "default": {
-                "timestamp":"datetime",
-                "tinyint(1)":"boolean",
-                "json":"array"
-              },
-              "description": "Ignore columns matching these regular expression patterns."
-            }
+            "default": [
+              "^created_at$",
+              "^updated_at$",
+              "^deleted_at$"
+            ],
+            "description": "Ignore columns matching these regular expression patterns."
+          },
+          "laravel-eloquent-model-attributes.casts.types": {
+            "order": 1,
+            "type": "object",
+            "patternProperties": {
+              ".*": {
+                "type": "string"
+              }
+            },
+            "default": {
+              "timestamp": "datetime",
+              "tinyint(1)": "boolean",
+              "json": "array"
+            },
+            "description": "Ignore columns matching these regular expression patterns."
           }
-        }      
+        }
+      }
     ]
   },
   "scripts": {
@@ -125,6 +141,8 @@
   },
   "dependencies": {
     "dotenv": "^16.0.3",
-    "mysql2": "^3.2.4"
+    "mysql2": "^3.2.4",
+    "pluralize": "^8.0.0",
+    "snake-case": "^3.0.4"
   }
 }

@@ -38,3 +38,14 @@ export default async function getDatabaseInformation() : Promise<DatabaseInforma
 	}
 	return undefined;
 }
+
+export function detectModelName(document: vscode.TextDocument):string|null {
+	const code = document.getText();
+	const matches = code.match(/class\s+([a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*)\s+extends\s+Model\s+/);
+	if (matches !== null) {
+		if (matches.length === 2) {	// Exactly one class that extends Model
+			return matches[1];
+		}
+	}
+	return null;
+}
