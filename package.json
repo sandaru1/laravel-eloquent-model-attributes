@@ -2,7 +2,7 @@
   "name": "laravel-eloquent-model-attributes",
   "displayName": "Laravel Eloquent Model Attributes",
   "description": "Generate laravel eloquent model attributes automatically",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.77.0"
   },
@@ -19,7 +19,7 @@
   "icon":"images/icon.jpg",
   "repository": {
     "type": "git",
-    "url": "https: //github.com/sandaru1/laravel-eloquent-model-attributes.git"
+    "url": "https://github.com/sandaru1/laravel-eloquent-model-attributes.git"
   },
   "bugs": {
     "url": "https://github.com/sandaru1/laravel-eloquent-model-attributes/issues",
