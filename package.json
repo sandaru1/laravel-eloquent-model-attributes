@@ -36,6 +36,10 @@
       {
         "command": "laravel-eloquent-model-attributes.insert-attributes",
         "title": "Insert Eloquent Model Attributes"
+      },
+      {
+        "command": "laravel-eloquent-model-attributes.insert-attributes-phpdoc",
+        "title": "Insert PHPDoc for Eloquent Model Attributes"
       }
     ],
     "configuration": [
@@ -107,6 +111,38 @@
               "json": "array"
             },
             "description": "Define what type of columns should cast to Laravel types. MySqlType : LaravelCastType"
+          }
+        }
+      },
+      {
+        "title": "PHPDoc",
+        "properties": {
+          "laravel-eloquent-model-attributes.PHPDoc.types": {
+            "order": 1,
+            "type": "object",
+            "patternProperties": {
+              ".*": {
+                "type": "string"
+              }
+            },
+            "default": {
+              "text": "string",
+              "blob": "string",
+              "char": "string",
+              "binary": "string",
+              "enum": "string",
+              "tinyint": "boolean",
+              "int": "integer",
+              "float": "float",
+              "double": "float",
+              "decimal": "float",
+              "bit": "integer",
+              "date": "\\Illuminate\\Support\\Carbon",
+              "time": "\\Illuminate\\Support\\Carbon",
+              "year": "\\Illuminate\\Support\\Carbon",
+              "json": "array"
+            },
+            "description": "Define regular expressions for what type of columns should be matched to PHPDoc types. MySqlType : PHPDoc type"
           }
         }
       }
