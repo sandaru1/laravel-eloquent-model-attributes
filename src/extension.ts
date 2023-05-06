@@ -38,14 +38,14 @@ function insertCode(editor:vscode.TextEditor, getCode: (schema:Array<TableColumn
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
-	
+
 	const insertAttributesDisposable = vscode.commands.registerTextEditorCommand('laravel-eloquent-model-attributes.insert-attributes', (editor, edit) => {
-		insertCode(editor, generateCode)
+		insertCode(editor, generateCode);
 	});
 	context.subscriptions.push(insertAttributesDisposable);
 
 	const insertPhpDocDisposable = vscode.commands.registerTextEditorCommand('laravel-eloquent-model-attributes.insert-attributes-phpdoc', (editor, edit) => {
-		insertCode(editor, generateDoc)
+		insertCode(editor, generateDoc);
 	});
 	context.subscriptions.push(insertPhpDocDisposable);
 }
