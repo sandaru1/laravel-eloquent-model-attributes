@@ -1,5 +1,10 @@
 # Change Log
 
+### 0.0.5
+
+- New command for PHPDoc generation.
+- Fixed the wrong description for casting type matching setting.
+
 ## 0.0.4
 
 - Feature: Autodetect table names.
