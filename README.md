@@ -49,6 +49,10 @@ This extension can detect and insert following attribute changes. You can change
 
 1. Only supports MySQL at the moment.
 
+## Contributors
+
+- [@wahhabc23](https://github.com/wahhabc23)
+
 ## Release Notes
 
 ### 0.0.6
