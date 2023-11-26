@@ -51,6 +51,10 @@ This extension can detect and insert following attribute changes. You can change
 
 ## Release Notes
 
+### 0.0.6
+
+Fixed issue in windows
+
 ### 0.0.5
 
 New command for PHPDoc generation.

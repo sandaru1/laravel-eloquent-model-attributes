@@ -15,7 +15,10 @@ export default async function getDatabaseInformation() : Promise<DatabaseInforma
 			activeFolder = await vscode.window.showWorkspaceFolderPick();
 		}
 		if (activeFolder !== undefined) {
-			const envPath = activeFolder.uri.path+"/.env";
+			let envPath = activeFolder.uri.path+"/.env";
+			if(process.platform == 'win32'){
+				envPath = activeFolder.uri.path.substring(1) + "/.env";
+			}
 			const config = dotenv.config({path: envPath});
 			if (config.parsed) {
 				if (config.parsed.DB_CONNECTION!=="mysql") {
