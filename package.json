@@ -2,7 +2,7 @@
   "name": "laravel-eloquent-model-attributes",
   "displayName": "Laravel Eloquent Model Attributes",
   "description": "Generate laravel eloquent model attributes automatically",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "vscode": "^1.77.0"
   },
